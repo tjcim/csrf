@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block app_content %}
+    {% if not success %}
+    <h1>Guess my favorite actor!</h1>
+    <div class="row">
+        <div class="col-md-4">
+            {{ wtf.quick_form(form) }}
+        </div>
+    </div>
+    {% else %}
+    <h1>I am going to steal the Declaration of Independence... and your heart.</h1>
+    <div class="row">
+      <div class="col-md-4">
+          <img class="img img-fluid" src="{{ url_for('static', filename="nicholas_cage.jpg") }}" style="width:800px">
+      </div>
+    </div>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,32 @@
+---
+version: "3.9"
+
+services:
+  web:
+    build: .
+    ports:
+      - "5000:5000"
+    environment:
+      SECRET_KEY: "my secret key"
+      SQLALCHEMY_DATABASE_URI: "mysql+pymysql://microblog:microblog@db/microblog"
+      MAIL_SERVER: <some smtp server>
+      MAIL_PORT: 25
+      MAIL_USE_SSL: 1
+      MAIL_USERNAME: <user>
+      MAIL_PASSWORD: <password>
+      ELASTICSEARCH_URL: "http://es:9200"
+  db:
+    image: mysql:8
+    restart: always
+    container_name: db
+    environment:
+      MYSQL_RANDOM_ROOT_PASSWORD: 1
+      MYSQL_DATABASE: microblog
+      MYSQL_USER: microblog
+      MYSQL_PASSWORD: microblog
+  es:
+    image: elasticsearch:7.12.1
+    restart: always
+    container_name: es
+    environment:
+      discovery.type: "single-node"

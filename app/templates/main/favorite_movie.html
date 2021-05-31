@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block app_content %}
+    {% if not success %}
+    <h1>Guess my favorite movie!</h1>
+    <div class="row">
+        <div class="col-md-4">
+            {{ wtf.quick_form(form) }}
+        </div>
+    </div>
+    {% else %}
+    <h1>Put... the bunny... back... in the box</h1>
+    <p>Define irony. Bunch of idiots dancing on a plane to a song made famous by a band that died in a plane crash.</p>
+    <div class="row">
+      <div class="col-md-4">
+          <img class="img-fluid" src="{{ url_for('static', filename="con_air.jpg") }}" style="width: 800px">
+      </div>
+    </div>
+    {% endif %}
+{% endblock %}
